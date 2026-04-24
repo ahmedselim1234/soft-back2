@@ -1,0 +1,2 @@
+com\hotel\gateway\filter\JwtAuthenticationFilter.class
+com\hotel\gateway\ApiGatewayApplication.class

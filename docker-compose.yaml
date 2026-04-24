@@ -1,0 +1,87 @@
+version: "3"
+
+services:
+
+  eureka-server:
+    container_name: eureka-server
+    restart: always
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - hotel-network
+
+  api-gateway:
+    container_name: api-gateway
+    restart: always
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      EUREKA_URL: http://eureka-server:8761/eureka
+      JWT_SECRET: hotel_jwt_secret_key_2024_very_secure_random_string
+    depends_on:
+      - eureka-server
+    networks:
+      - hotel-network
+
+  user-app:
+    container_name: user-App
+    restart: always
+    build: ./user-service
+    ports:
+      - "9000:9000"
+    environment:
+      MONGO_URI: mongodb+srv://a7medselim123456_db_user:Lzc8xLgZvszQw1Xs@cluster0.37helqe.mongodb.net/hotel_users
+      EUREKA_URL: http://eureka-server:8761/eureka
+      JWT_SECRET: hotel_jwt_secret_key_2024_very_secure_random_string
+    depends_on:
+      - eureka-server
+    networks:
+      - hotel-network
+
+  room-app:
+    container_name: room-App
+    restart: always
+    build: ./room-service
+    ports:
+      - "9001:9001"
+    environment:
+      MONGO_URI: mongodb+srv://a7medselim123456_db_user:Lzc8xLgZvszQw1Xs@cluster0.37helqe.mongodb.net/hotel_rooms
+      EUREKA_URL: http://eureka-server:8761/eureka
+    depends_on:
+      - eureka-server
+    networks:
+      - hotel-network
+
+  payment-app:
+    container_name: payment-App
+    restart: always
+    build: ./payment-service
+    ports:
+      - "9002:9002"
+    environment:
+      MONGO_URI: mongodb+srv://a7medselim123456_db_user:Lzc8xLgZvszQw1Xs@cluster0.37helqe.mongodb.net/hotel_payments
+      EUREKA_URL: http://eureka-server:8761/eureka
+    depends_on:
+      - eureka-server
+    networks:
+      - hotel-network
+
+  booking-app:
+    container_name: booking-App
+    restart: always
+    build: ./booking-service
+    ports:
+      - "9003:9003"
+    environment:
+      MONGO_URI: mongodb+srv://a7medselim123456_db_user:Lzc8xLgZvszQw1Xs@cluster0.37helqe.mongodb.net/hotel_bookings
+      EUREKA_URL: http://eureka-server:8761/eureka
+    depends_on:
+      - eureka-server
+    networks:
+      - hotel-network
+
+networks:
+  hotel-network:
+    driver: bridge
