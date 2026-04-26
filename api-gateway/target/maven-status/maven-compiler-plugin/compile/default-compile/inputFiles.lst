@@ -1,2 +1,3 @@
 C:\Users\dell\Desktop\soft-back\api-gateway\src\main\java\com\hotel\gateway\ApiGatewayApplication.java
+C:\Users\dell\Desktop\soft-back\api-gateway\src\main\java\com\hotel\gateway\config\CorsConfig.java
 C:\Users\dell\Desktop\soft-back\api-gateway\src\main\java\com\hotel\gateway\filter\JwtAuthenticationFilter.java

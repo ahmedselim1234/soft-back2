@@ -48,6 +48,11 @@ public class RoomController {
         return roomService.updateRoom(id, roomDetails);
     }
 
+    @PatchMapping("/{id}")
+    public Object patchRoom(@PathVariable String id, @RequestBody Room roomDetails) {
+        return roomService.updateRoom(id, roomDetails);
+    }
+
     @DeleteMapping("/{id}")
     public Object deleteRoom(@PathVariable String id) {
         return roomService.deleteRoom(id);

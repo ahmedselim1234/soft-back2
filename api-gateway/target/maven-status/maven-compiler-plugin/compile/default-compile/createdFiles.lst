@@ -1,2 +1,3 @@
 com\hotel\gateway\filter\JwtAuthenticationFilter.class
 com\hotel\gateway\ApiGatewayApplication.class
+com\hotel\gateway\config\CorsConfig.class
