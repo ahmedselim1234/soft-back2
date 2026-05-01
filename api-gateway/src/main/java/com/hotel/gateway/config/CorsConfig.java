@@ -16,8 +16,6 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class CorsConfig {
 
-    private static final String ALLOWED_ORIGIN = "http://localhost:5173";
-
     @Bean
     public WebFilter corsFilter() {
         return (ServerWebExchange exchange, WebFilterChain chain) -> {
@@ -26,11 +24,10 @@ public class CorsConfig {
 
             if (CorsUtils.isCorsRequest(request)) {
                 HttpHeaders headers = response.getHeaders();
-                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, ALLOWED_ORIGIN);
-                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
-                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET,POST,PUT,PATCH,DELETE,OPTIONS");
-                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "*");
-                headers.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "3600");
+                headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+                headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET,POST,PUT,PATCH,DELETE,OPTIONS");
+                headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "*");
+                headers.set(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "3600");
 
                 if (request.getMethod() == HttpMethod.OPTIONS) {
                     response.setStatusCode(HttpStatus.OK);
