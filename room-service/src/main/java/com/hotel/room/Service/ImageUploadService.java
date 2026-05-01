@@ -35,7 +35,7 @@ public class ImageUploadService {
 
         Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
         Files.createDirectories(uploadPath);
-        Files.copy(file.getInputStream(), uploadPath.resolve(filename));
+        Files.copy(file.getInputStream(), uploadPath.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
 
         return GATEWAY_BASE_URL + "/rooms/uploads/" + filename;
     }

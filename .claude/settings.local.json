@@ -3,7 +3,9 @@
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\dell\\\\Desktop\\\\soft-back\" -Recurse -Filter \"application.yml\" -ErrorAction SilentlyContinue)",
       "Bash(Select-Object -ExpandProperty FullName)",
-      "Bash(xargs grep *)"
+      "Bash(xargs grep *)",
+      "Bash(dir \"C:\\\\Users\\\\dell\\\\Desktop\\\\soft-back\")",
+      "Bash(findstr /i upload)"
     ]
   }
 }
